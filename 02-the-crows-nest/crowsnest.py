@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
 Author : Alfredo Vilagut Garcia <alfredovilagutgarcia@gmail.com>
-Date   : 27/06/22
+Date   : 27/06/2022
 Purpose: Crow's Nest -- choose the correct article
 """
 
