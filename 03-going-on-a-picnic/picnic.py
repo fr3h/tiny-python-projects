@@ -2,7 +2,7 @@
 """
 Author : Alfredo Vilagut Garcia <alfredovilagutgarcia@gmail.com>
 Date   : 28/06/2022
-Purpose: Rock the Casbah
+Purpose: Picnic game
 """
 
 import argparse
