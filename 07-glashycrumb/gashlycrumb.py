@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
 Author : Alfredo Vilagut Garcia <alfredovilagutgarcia@gmail.com>
-Date   : today
+Date   : 06/07/2022
 Purpose: Gashlycrumb
 """
 

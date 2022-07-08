@@ -1,36 +1,35 @@
 #!/usr/bin/python
 """
 Author : Alfredo Vilagut Garcia <alfredovilagutgarcia@gmail.com>
-Date   : 02/07/2022
-Purpose: Howler (upper-cases input)
+Date   : 08/07/2022
+Purpose: Replace the vowels
 """
 
 import argparse
-import os
 
 
 # --------------------------------------------------
+import os
+
+
 def get_args():
     """Get command-line arguments"""
 
     parser = argparse.ArgumentParser(
-        description='Howler (upper-cases input)',
+        description='Apples and bananas',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('text',
-                        metavar='str',
-                        help='Input text')
+                        metavar='text',
+                        help='Input text or file')
 
-    parser.add_argument('-o',
-                        '--outfile',
-                        help='Output filename',
-                        metavar='str',
+    parser.add_argument('-v',
+                        '--vowel',
+                        help='The vowel to substitute (default: a)',
+                        metavar='vowel',
                         type=str,
-                        default='')
-
-    parser.add_argument('--ee',
-                        action='store_true',
-                        help='Set output to lowercase (Default: False)')
+                        default='a',
+                        choices=list('aeiou'))
 
     return parser.parse_args()
 
@@ -44,13 +43,11 @@ def read_file(file):
 
 
 # --------------------------------------------------
-def write_file(file, text, lc):
-    out_fh = open(file, 'wt')
-    if lc:
-        out_fh.write(text.lower())
-    else:
-        out_fh.write(text.upper())
-    out_fh.close()
+def replace_vowels(text, vowel):
+    dictionary = {'a': vowel, 'e': vowel, 'i': vowel, 'o': vowel, 'u': vowel,
+                  'A': vowel.upper(), 'E': vowel.upper(), 'I': vowel.upper(), 'O': vowel.upper(), 'U': vowel.upper()}
+    text = text.translate(text.maketrans(dictionary))
+    return text
 
 
 # --------------------------------------------------
@@ -59,16 +56,10 @@ def main():
 
     args = get_args()
     text = args.text
-    lc = args.ee
     if os.path.isfile(text):
         text = read_file(text)
-
-    if args.outfile:
-        write_file(args.outfile, text, lc)
-    elif lc:
-        print(text.lower())
-    else:
-        print(text.upper())
+    text = replace_vowels(text, args.vowel)
+    print(text)
 
 
 # --------------------------------------------------

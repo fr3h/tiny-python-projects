@@ -1,7 +1,7 @@
 #!/usr/bin/python
 """
 Author : Alfredo Vilagut Garcia <alfredovilagutgarcia@gmail.com>
-Date   : today
+Date   : 05/07/2022
 Purpose: Python version of the word count program
 """
 
