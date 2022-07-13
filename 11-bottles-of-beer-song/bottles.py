@@ -59,9 +59,9 @@ def get_bottles(num, reverse, step):
     """Get the actual and next bottle"""
 
     if reverse:
-        return num, num+step, num+step
+        return num, num+step
     else:
-        return num, num-step, num-step
+        return num, num-step
 
 
 # --------------------------------------------------
@@ -71,22 +71,14 @@ def verse(bottle, next_bottle, text):
     verse_1 = "of beer on the wall,"
     verse_2 = "of beer,\nTake one down, pass it around,"
 
-    if bottle > 1:
-        print(f'{num_dict.get(bottle) if text else bottle} bottles {verse_1}')
-        print(f'{num_dict.get(bottle) if text else bottle} bottles {verse_2}')
-        if next_bottle > 1:
-            print(f'{num_dict.get(next_bottle) if text else next_bottle} bottles of beer on the wall!\n')
-        elif next_bottle == 1:
-            print(f'{num_dict.get(next_bottle) if text else next_bottle} bottle of beer on the wall!\n')
-        else:
-            print('No more bottles of beer on the wall!')
+    print(f'{num_dict.get(bottle) if text else bottle} {"bottles" if bottle > 1 else "bottle"} {verse_1}')
+    print(f'{num_dict.get(bottle) if text else bottle} {"bottles" if bottle > 1 else "bottle"} {verse_2}')
+    if next_bottle > 1:
+        print(f'{num_dict.get(next_bottle) if text else next_bottle} bottles of beer on the wall!\n')
+    elif next_bottle == 1:
+        print(f'{num_dict.get(next_bottle) if text else next_bottle} bottle of beer on the wall!\n')
     else:
-        print(f'{num_dict.get(bottle) if text else bottle} bottle {verse_1}')
-        print(f'{num_dict.get(bottle) if text else bottle} bottle {verse_2}')
-        if next_bottle > 1:
-            print(f'{num_dict.get(next_bottle) if text else next_bottle} bottles of beer on the wall!\n')
-        else:
-            print('No more bottles of beer on the wall!')
+        print('No more bottles of beer on the wall!')
 
 
 # --------------------------------------------------
@@ -101,7 +93,7 @@ def main():
     while i < args.num:
         bottles = get_bottles(num, args.reverse, args.step)
         verse(bottles[0], bottles[1], args.text)
-        num = bottles[2]
+        num = bottles[1]
         i += args.step
 
 
