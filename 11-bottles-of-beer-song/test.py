@@ -112,3 +112,61 @@ def random_string():
 
     k = random.randint(5, 10)
     return ''.join(random.choices(string.ascii_letters + string.digits, k=k))
+
+
+# --------------------------------------------------
+def test_numers_to_text():
+    """Replace the Arabic numbers (1,2,3) with text (one, two, three)"""
+
+    expected = ('Three bottles of beer on the wall,\n'
+                'Three bottles of beer,\n'
+                'Take one down, pass it around,\n'
+                'Two bottles of beer on the wall!\n\n'
+                'Two bottles of beer on the wall,\n'
+                'Two bottles of beer,\n'
+                'Take one down, pass it around,\n'
+                'One bottle of beer on the wall!\n\n'
+                'One bottle of beer on the wall,\n'
+                'One bottle of beer,\n'
+                'Take one down, pass it around,\n'
+                'No more bottles of beer on the wall!')
+
+    rv, out = getstatusoutput(f'{prg} -t -n 3')
+    assert rv == 0
+    assert out == expected
+
+
+# --------------------------------------------------
+def test_steps():
+    """Allows the user to skip numbers"""
+
+    expected = ('3 bottles of beer on the wall,\n'
+                '3 bottles of beer,\n'
+                'Take one down, pass it around,\n'
+                '1 bottle of beer on the wall!\n\n'
+                '1 bottle of beer on the wall,\n'
+                '1 bottle of beer,\n'
+                'Take one down, pass it around,\n'
+                'No more bottles of beer on the wall!')
+
+    rv, out = getstatusoutput(f'{prg} -n 3 -s 2')
+    assert rv == 0
+    assert out == expected
+
+
+# --------------------------------------------------
+def test_reverse():
+    """Reverse the order of the verses"""
+
+    expected = ('1 bottle of beer on the wall,\n'
+                '1 bottle of beer,\n'
+                'Take one down, pass it around,\n'
+                '2 bottles of beer on the wall!\n\n'
+                '2 bottles of beer on the wall,\n'
+                '2 bottles of beer,\n'
+                'Take one down, pass it around,\n'
+                '3 bottles of beer on the wall!\n')
+
+    rv, out = getstatusoutput(f'{prg} -r -n 2')
+    assert rv == 0
+    assert out == expected
