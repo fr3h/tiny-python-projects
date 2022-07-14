@@ -70,11 +70,12 @@ def verse(num_bottle, num_next_bottle, text):
 
     bottle = "bottles" if num_bottle != 1 else "bottle"
     next_bottle = "bottles" if num_next_bottle != 1 else "bottle"
+    num, num_next = num_dict.get(num_bottle), num_dict.get(num_next_bottle) if text else num_bottle, num_next_bottle
 
-    print(f'{num_dict.get(num_bottle) if text else num_bottle} {bottle} of beer on the wall,')
-    print(f'{num_dict.get(num_bottle) if text else num_bottle} {bottle} of beer,\nTake one down, pass it around,')
+    print(f'{num} {bottle} of beer on the wall,')
+    print(f'{num} {bottle} of beer,\nTake one down, pass it around,')
     if num_next_bottle >= 1:
-        print(f'{num_dict.get(num_next_bottle) if text else num_next_bottle} {next_bottle} of beer on the wall!\n')
+        print(f'{num_next} {next_bottle} of beer on the wall!\n')
     else:
         print('No more bottles of beer on the wall!')
 
