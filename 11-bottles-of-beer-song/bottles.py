@@ -46,7 +46,7 @@ def get_args():
         parser.error(f'--num "{args.num}" must be greater than 0')
 
     if args.step < 1 or args.step > args.num:
-        parser.error(f'--step "{args.step}" must be between 1 and the numbers of bottles "{args.num}"')
+        parser.error(f'--step "{args.step}" must be between 1 and the numbers of bottles --num "{args.num}"')
 
     return args
 
@@ -65,18 +65,16 @@ def get_bottles(num, reverse, step):
 
 
 # --------------------------------------------------
-def verse(bottle, next_bottle, text):
+def verse(num_bottle, num_next_bottle, text):
     """Sing a verse"""
 
-    verse_1 = "of beer on the wall,"
-    verse_2 = "of beer,\nTake one down, pass it around,"
+    bottle = "bottles" if num_bottle != 1 else "bottle"
+    next_bottle = "bottles" if num_next_bottle != 1 else "bottle"
 
-    print(f'{num_dict.get(bottle) if text else bottle} {"bottles" if bottle > 1 else "bottle"} {verse_1}')
-    print(f'{num_dict.get(bottle) if text else bottle} {"bottles" if bottle > 1 else "bottle"} {verse_2}')
-    if next_bottle > 1:
-        print(f'{num_dict.get(next_bottle) if text else next_bottle} bottles of beer on the wall!\n')
-    elif next_bottle == 1:
-        print(f'{num_dict.get(next_bottle) if text else next_bottle} bottle of beer on the wall!\n')
+    print(f'{num_dict.get(num_bottle) if text else num_bottle} {bottle} of beer on the wall,')
+    print(f'{num_dict.get(num_bottle) if text else num_bottle} {bottle} of beer,\nTake one down, pass it around,')
+    if num_next_bottle >= 1:
+        print(f'{num_dict.get(num_next_bottle) if text else num_next_bottle} {next_bottle} of beer on the wall!\n')
     else:
         print('No more bottles of beer on the wall!')
 
